@@ -42,6 +42,16 @@ router.get('/searchid/:id', async (req, res) => {
             mesaje: err.message
         });
     }
-})
+});
+
+router.get('/searchgenre', async (req, res) => {
+    try{
+        res.json(await movieController.searchByGenreName());
+    } catch (err) {
+        return res.status(500).json({
+            mesaje: err.message
+        });
+    }
+});
 
 module.exports = router;

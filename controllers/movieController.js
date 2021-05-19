@@ -18,6 +18,27 @@ class Film {
         return res.data;
     }
 
+    async searchByGenreName(){
+        let res = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US`);
+        let arrayGenre = res.data.genres;
+        console.log(arrayGenre);
+        // console.log(`Esto es por [id] ${arrayGenre.id}`);
+        console.log(`Esto es por [0] ${arrayGenre[0].name}`);
+        let genre = [];
+        for (let i in arrayGenre){
+            console.log(arrayGenre[i].name);
+            genre.push(arrayGenre[i].name);
+            
+        }
+        console.log(genre);
+
+
+
+
+
+
+        return arrayGenre;
+    }
 
 
 }
