@@ -8,6 +8,21 @@ const seriesController = require('../controllers/seriesController');
 //GET
 
 //http://localhost:3000/series
+
+
+
+router.get('/bytitle/:tv_name', async (req, res) => {
+    try {
+        let tv_name = req.params.tv_name;
+        res.json(await seriesController.searchTvbytTitle(tv_name));
+    } catch (err) {
+        return res.status(500).json({
+            mesaje: err.message
+        });
+    }
+});
+
+
 router.get('/toprated', async (req, res) => {
     try{
         res.json(await seriesController.topRated());
