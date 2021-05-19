@@ -44,14 +44,27 @@ router.get('/searchid/:id', async (req, res) => {
     }
 });
 
-router.get('/searchgenre', async (req, res) => {
+router.get('/searchgenre/:genreLog', async (req, res) => {
     try{
-        res.json(await movieController.searchByGenreName());
+        let genreLog = req.params.genreLog;
+        res.json(await movieController.searchByGenreName(genreLog));
     } catch (err) {
         return res.status(500).json({
             mesaje: err.message
         });
     }
 });
+
+router.get('/scode/:code', async (req, res) => {
+    try{
+        let codeG = req.params.code;
+        res.json(await movieController.searchByCode(codeG));
+    } catch (err) {
+        return res.status(500).json({
+            mesaje: err.message
+        });
+    }
+});
+
 
 module.exports = router;

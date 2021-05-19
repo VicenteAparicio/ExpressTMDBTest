@@ -18,26 +18,30 @@ class Film {
         return res.data;
     }
 
-    async searchByGenreName(){
+    async searchByGenreName(nombreGenero){
         let res = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US`);
         let arrayGenre = res.data.genres;
-        console.log(arrayGenre);
+        // console.log(arrayGenre);
         // console.log(`Esto es por [id] ${arrayGenre.id}`);
-        console.log(`Esto es por [0] ${arrayGenre[0].name}`);
-        let genre = [];
+        // console.log(`Esto es por [0] ${arrayGenre[0].name}`);
+        // let nombreGenero='Adventure';
         for (let i in arrayGenre){
-            console.log(arrayGenre[i].name);
-            genre.push(arrayGenre[i].name);
-            
+            //console.log(arrayGenre[i].name);
+            console.log('red alert')
+            if (nombreGenero == arrayGenre[i].name){
+                console.log(i);
+                let code1 = arrayGenre[i].id;
+                console.log(code1)
+                let res2 = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=210d6a5dd3f16419ce349c9f1b200d6d&with_genres=${code1}`);
+                console.log(res2.data);
+                return res2.data;
+            }  
         }
-        console.log(genre);
+    }
 
-
-
-
-
-
-        return arrayGenre;
+    async searchByCode(code){
+        let res = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=210d6a5dd3f16419ce349c9f1b200d6d&with_genres=${code}`);
+        return res.data;
     }
 
 
