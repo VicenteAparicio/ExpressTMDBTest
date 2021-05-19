@@ -8,7 +8,7 @@ const seriesController = require('../controllers/seriesController');
 //GET
 
 //http://localhost:3000/series
-router.get('/', async (req, res) => {
+router.get('/toprated', async (req, res) => {
     try{
         res.json(await seriesController.topRated());
     } catch (err) {
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:tv_id', async (req, res) => {
+router.get('/searchid/:tv_id', async (req, res) => {
     try {
         let tv_id = req.params.tv_id;
         res.json(await seriesController.findTvShow(tv_id));

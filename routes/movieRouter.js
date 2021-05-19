@@ -10,7 +10,7 @@ const movieController = require('../controllers/movieController');
 //GET
 
 //http://localhost:3000/movies
-router.get('/', async (req, res) => {
+router.get('/toprated', async (req, res) => {
     try {
         res.json(await movieController.findTopRated());
     } catch (err) {
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/searchid/:id', async (req, res) => {
     try{
         let id = req.params.id;
         res.json(await movieController.searchById(id));
