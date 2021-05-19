@@ -44,6 +44,16 @@ router.get('/searchid/:tv_id', async (req, res) => {
     }
 });
 
+router.get('/ontheair', async (req, res) => {
+    try {
+        res.json(await seriesController.onTheAir());
+    } catch (err) {
+        return res.status(500).json({
+            mesaje: err.message
+        });
+    }
+});
+
 
 
 module.exports = router;
