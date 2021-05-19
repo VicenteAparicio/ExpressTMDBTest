@@ -55,5 +55,15 @@ router.get('/ontheair', async (req, res) => {
 });
 
 
+router.get('/intheaters/:tv_id', async (req, res) => {
+    try {
+        let tv_id = req.params.tv_id;
+        res.json(await seriesController.inTheaters(tv_id));
+    } catch (err) {
+        return res.status(500).json({
+            mesaje: err.message
+        });
+    }
+});
 
 module.exports = router;
