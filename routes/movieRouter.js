@@ -34,7 +34,7 @@ router.get('/toprated', async (req, res) => {
 });
 
 router.get('/searchid/:id', async (req, res) => {
-    try{
+    try {
         let id = req.params.id;
         res.json(await movieController.searchById(id));
     } catch (err) {
@@ -45,7 +45,7 @@ router.get('/searchid/:id', async (req, res) => {
 });
 
 router.get('/searchgenre/:genreLog', async (req, res) => {
-    try{
+    try {
         let genreLog = req.params.genreLog;
         res.json(await movieController.searchByGenreName(genreLog));
     } catch (err) {
@@ -56,7 +56,7 @@ router.get('/searchgenre/:genreLog', async (req, res) => {
 });
 
 router.get('/scode/:code', async (req, res) => {
-    try{
+    try {
         let codeG = req.params.code;
         res.json(await movieController.searchByCode(codeG));
     } catch (err) {
@@ -66,5 +66,14 @@ router.get('/scode/:code', async (req, res) => {
     }
 });
 
+router.get('/nowplaying', async (req, res) => {
+    try {
+        res.json(await movieController.findNowPlaying());
+    } catch (err) {
+        return res.status(500).json({
+            mesaje: err.message
+        });
+    }
+});
 
 module.exports = router;
