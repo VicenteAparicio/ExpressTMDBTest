@@ -66,4 +66,14 @@ router.get('/intheaters/:tv_id', async (req, res) => {
     }
 });
 
+router.get('/popularTV', async (req, res) => {
+    try {
+        res.json(await seriesController.popularTV());
+    } catch (err) {
+        return res.status(500).json({
+            mesaje: err.message
+        });
+    }
+});
+
 module.exports = router;
