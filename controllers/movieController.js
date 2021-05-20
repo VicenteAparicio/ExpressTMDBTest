@@ -21,7 +21,7 @@ class Film {
     async searchByGenreName(genreName) {
         let res = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US`);
         let arrayGenre = res.data.genres;
-        
+
         for (let i in arrayGenre) {
             console.log('red alert')
             if (genreName == arrayGenre[i].name) {
@@ -40,6 +40,11 @@ class Film {
 
     async findNowPlaying() {
         let res = await axios.get('https://api.themoviedb.org/3/movie/now_playing?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&page=1');
+        return res.data;
+    }
+
+    async findPopular() {
+        let res = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&page=1');
         return res.data;
     }
 
