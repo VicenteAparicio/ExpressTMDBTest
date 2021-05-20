@@ -76,4 +76,14 @@ router.get('/nowplaying', async (req, res) => {
     }
 });
 
+router.get('/popular', async (req, res) => {
+    try {
+        res.json(await movieController.findPopular());
+    } catch (err) {
+        return res.status(500).json({
+            mesaje: err.message
+        });
+    }
+});
+
 module.exports = router;
